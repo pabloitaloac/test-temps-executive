@@ -15,6 +15,11 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - test_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 50
 
   web:
     build:
@@ -26,7 +31,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DATABASE_HOST: db
       DATABASE_PORT: 3306
