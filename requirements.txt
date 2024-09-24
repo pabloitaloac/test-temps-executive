@@ -5,3 +5,4 @@ sqlparse==0.5.1
 mysqlclient==2.2.4
 watchdog===5.0.2
 gunicorn==23.0.0
+drf-yasg==1.21.7
