@@ -35,3 +35,6 @@ __pycache__/
 # Ignore Django migration files
 migrations/
 */migrations/
+
+# Ignore venv directory
+venv/
