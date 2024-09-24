@@ -23,5 +23,14 @@ EXPOSE 8000
 # Define environment variable
 ENV PYTHONUNBUFFERED=1
 
-# Run the Django app
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Copy entrypoint script into the container
+COPY ./entrypoint.sh /app/entrypoint.sh
+
+# Set execute permissions for the entrypoint script
+RUN chmod +x /app/entrypoint.sh
+
+# Verify permissions of the entrypoint script
+RUN ls -l /app/entrypoint.sh
+
+# Set the entrypoint
+ENTRYPOINT ["/app/entrypoint.sh"]

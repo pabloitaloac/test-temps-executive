@@ -17,8 +17,10 @@ services:
       - test_network
 
   web:
-    build: .
-    command: gunicorn --reload --bind 0.0.0.0:8000 main.wsgi:application
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: /app/entrypoint.sh
     volumes:
       - .:/app
     ports:
